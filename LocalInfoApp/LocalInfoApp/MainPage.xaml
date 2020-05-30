@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LocalInfoApp.MainPage"
+             BackgroundImageSource="markusspiske68ZlATaVYIounsplash.jpg">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelWeather" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="labelSubHeader" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="#BBBBBB" />
+                <Setter Property="Padding" Value="25,0" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+            </Style>
+            <Style x:Key="labelSubBody" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Padding" Value="25,0" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout HorizontalOptions="FillAndExpand">
+        <Label x:Name="MainWeatherTemp" Text="" Style="{StaticResource labelWeather}" TextColor="#FFFFFF" FontSize="Title" Margin="0,40,0,0" />
+        <Label x:Name="MainWeatherConditions" Text="" Style="{StaticResource labelWeather}" TextColor="#BBBBBB" FontSize="Subtitle" Margin="0,0,0,5"  />
+        <Label x:Name="MainWeatherTime" Text="" Style="{StaticResource labelWeather}" TextColor="#EEEEEE" Margin="0,0,0,2" />
+        <Label x:Name="MainWeatherCity" Text="" Style="{StaticResource labelWeather}" TextColor="#EEEEEE" />
+
+        <Label x:Name="MainNews" Text="LOCAL NEWS" Style="{StaticResource labelSubHeader}" />
+        <Label x:Name="MainNewsHeadline" Text="" Style="{StaticResource labelSubBody}" />
+
+        <Label x:Name="MainStocksLabel" Text="STOCK MARKET" Style="{StaticResource labelSubHeader}" />
+        <Label x:Name="MainStocks" Text="" Style="{StaticResource labelSubBody}" />
+
+        <Label x:Name="MainSportsScoresLabel" Text="GAMES" Style="{StaticResource labelSubHeader}" />
+        <StackLayout Orientation="Horizontal" >
+            <Label x:Name="MainSportsScoresTeams" Text="" Style="{StaticResource labelSubBody}" Padding="25,0,0,0" />
+            <Label x:Name="MainSportsScoresValues" Text="" Style="{StaticResource labelSubBody}" Padding="5,0,0,0" />
+            <Label x:Name="MainSportsScoresDateAndStatus" Text="" Style="{StaticResource labelSubBody}" Padding="5,0,0,0" />
+        </StackLayout>
+
+        <Label x:Name="MainSports" Text="SPORTS NEWS" Style="{StaticResource labelSubHeader}" />
+        <Label x:Name="MainSportsNews" Text="" Style="{StaticResource labelSubBody}" />
+
+        <Label x:Name="MainCredit" Text="Photo by Markus Spiske on Unsplash" Style="{StaticResource labelSubHeader}" HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>
