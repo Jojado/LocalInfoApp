@@ -1,4 +1,5 @@
 ﻿using System;
+using LocalInfoApp.Properties;
 
 namespace LocalInfoApp
 {
@@ -12,13 +13,13 @@ namespace LocalInfoApp
 
         public string City { get; set; }
 
-        public static DisplayWeather CreateTestData()
+        public static DisplayWeather CreateSampleData()
         {
             return new DisplayWeather()
             {
-                City = "City Test",
-                Conditions = "Conditions Test",
-                TempCelsius = 10,
+                City = "City Name",
+                Conditions = "Conditions",
+                TempCelsius = 0,
                 TimeOfReading = new DateTime(2001, 1, 1)
             };
         }

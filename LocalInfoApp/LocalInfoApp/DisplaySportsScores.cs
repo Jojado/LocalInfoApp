@@ -16,15 +16,15 @@ namespace LocalInfoApp
 
         public string Status { get; set; }
 
-        public static DisplaySportsScores CreateTestData()
+        public static DisplaySportsScores CreateSampleData()
         {
             return new DisplaySportsScores
             {
                 AwayTeam = "Away Team",
-                AwayTeamScore = 2,
+                AwayTeamScore = 0,
                 DateOfEvent = new DateTime(2001, 1, 1),
                 HomeTeam = "Home Team",
-                HomeTeamScore = 1,
+                HomeTeamScore = 0,
                 Status = "FINAL"
             };
         }

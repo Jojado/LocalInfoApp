@@ -20,7 +20,7 @@ namespace LocalInfoApp
 
         public bool Gain { get; set; }
 
-        public static DisplayStock CreateTestData()
+        public static DisplayStock CreateSampleData()
         {
             return new DisplayStock
             {
@@ -28,7 +28,7 @@ namespace LocalInfoApp
                 ChangePercentage = 2.21f,
                 Close = 20.35f,
                 CompanyName = "Company Inc.",
-                CompanySymbol = "COM",
+                CompanySymbol = "CMP",
                 Currency = "USD",
                 ExchangeSymbol = "ABC",
                 Gain = true
