@@ -19,4 +19,4 @@ OpenWeatherMapKey -  a private key can be obtained for free from openweathermap.
 
 EndpointNewsFeedURL - the URL of an RSS feed
 
-EndpointSportsNewsURL - the URL of an RSS feed with sports news, specifically with this tree structure: channel>item>cateogy=Sports
+EndpointSportsNewsURL - the URL of an RSS feed with sports news, specifically with this tree structure: channel>item>category=Sports
