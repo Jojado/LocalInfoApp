@@ -7,9 +7,9 @@ Coded using VS 2019 and Xamarin.Forms with RestSharp and Newtownsoft Json. Can b
 
 Ran and tested using Android 8.1, API 27 emulator.
 
-Sample data is included! This will run perfectly fine without live data.
+Out of the box, this app will run with sample data. However, configuration exists to easily allow access to live data.
 
-Now, here's how to get started with displaying live data! In the following file, read the keys below and update their values:
+In the following file, read the keys below and update their values:
 
 LocalInfoApp/Properties/Resources.resx
 
