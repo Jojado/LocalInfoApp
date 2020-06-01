@@ -15,6 +15,6 @@ RapidApiKey - a private key must be obtained by registering at RapidApi.com and 
 
 OpenWeatherMapKey -  a private key can be obtained for free from openweathermap.org
 
-EndpointNewsFeedURL - the URL of an RSS feed
+EndpointNewsFeedURL - the URL of an RSS feed, e.g. https://calgary.ctvnews.ca/rss/ctv-news-calgary-1.822341
 
-EndpointSportsNewsURL - the URL of an RSS feed with sports news, specifically with this tree structure: channel>item>category=Sports
+EndpointSportsNewsURL - the URL of an RSS feed with sports news, specifically with this tree structure: channel>item>category=Sports , e.g. https://calgarysun.com/feed/
