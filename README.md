@@ -1,7 +1,7 @@
 # LocalInfoApp
 Displays weather, news , stocks and sports information.
 
-THIS SOFTWARE IS PROVIDED AS IS WITH NO WARRANTY OF ANY KIND. USE AT YOUR OWN RISK.
+THIS SOFTWARE IS PROVIDED AS IS WITH NO WARRANTY OF ANY KIND. USE AT OWN RISK.
 
 Coded using VS 2019 and Xamarin.Forms with RestSharp and Newtownsoft Json. Can be deployed to Android and iOS devices.
 
