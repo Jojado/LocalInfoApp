@@ -1,5 +1,5 @@
 # LocalInfoApp
-Displays weather, news ,stocks and sports information.
+Displays weather, news, stocks and sports information.
 
 THIS SOFTWARE IS PROVIDED AS IS WITH NO WARRANTY OF ANY KIND. USE AT OWN RISK.
 
