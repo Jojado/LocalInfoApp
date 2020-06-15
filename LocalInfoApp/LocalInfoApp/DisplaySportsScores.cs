@@ -4,6 +4,16 @@ namespace LocalInfoApp
 {
     public class DisplaySportsScores
     {
+        private static DisplaySportsScores _sampleSports = new DisplaySportsScores
+        {
+            AwayTeam = "Away Team",
+            AwayTeamScore = 0,
+            DateOfEvent = new DateTime(2001, 1, 1),
+            HomeTeam = "Home Team",
+            HomeTeamScore = 0,
+            Status = "FINAL"
+        };
+
         public DateTime DateOfEvent { get; set; }
 
         public string AwayTeam { get; set; }
@@ -16,17 +26,9 @@ namespace LocalInfoApp
 
         public string Status { get; set; }
 
-        public static DisplaySportsScores CreateSampleData()
+        public static DisplaySportsScores GetSampleData()
         {
-            return new DisplaySportsScores
-            {
-                AwayTeam = "Away Team",
-                AwayTeamScore = 0,
-                DateOfEvent = new DateTime(2001, 1, 1),
-                HomeTeam = "Home Team",
-                HomeTeamScore = 0,
-                Status = "FINAL"
-            };
+            return _sampleSports;
         }
     }
 }

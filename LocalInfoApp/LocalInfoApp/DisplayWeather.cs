@@ -5,6 +5,14 @@ namespace LocalInfoApp
 {
     public class DisplayWeather
     {
+        private static DisplayWeather _sampleData = new DisplayWeather()
+        {
+            City = "City Name",
+            Conditions = "Conditions",
+            TempCelsius = 0,
+            TimeOfReading = new DateTime(2001, 1, 1)
+        };
+
         public float TempCelsius { get; set; }
 
         public string Conditions { get; set; }
@@ -13,15 +21,9 @@ namespace LocalInfoApp
 
         public string City { get; set; }
 
-        public static DisplayWeather CreateSampleData()
+        public static DisplayWeather GetSampleData()
         {
-            return new DisplayWeather()
-            {
-                City = "City Name",
-                Conditions = "Conditions",
-                TempCelsius = 0,
-                TimeOfReading = new DateTime(2001, 1, 1)
-            };
+            return _sampleData;
         }
     }
 }

@@ -5,15 +5,24 @@ using System.Globalization;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace LocalInfoApp
 {
     public class EndpointManager
     {
-        public static DisplaySportsScores GetSportsScores()
+        public enum Result
+        {
+            OK,
+            Empty,
+            Error,
+            NoKey
+        }
+
+        public static KeyValuePair<DisplaySportsScores, Result> GetSportsScores()
         {
             if (Properties.Resources.RapidApiKey is "")
-                return null;
+                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.NoKey);
 
             const string API_DATE_FORMAT = "yyyy-MM-dd";
             int parsed_team_id;
@@ -30,7 +39,7 @@ namespace LocalInfoApp
             }
             catch (Exception)
             {
-                return null;
+                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.Error);
             }
 
             string clientURL =
@@ -46,7 +55,7 @@ namespace LocalInfoApp
             var response = client.Execute(request);
             var sportsEvents = JsonConvert.DeserializeObject<JsonSportsEvents>(response.Content);
             if (sportsEvents is null || sportsEvents.events is null)
-                return null;
+                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.Empty);
 
             Event event1 = (
                 from evnt in sportsEvents.events
@@ -55,7 +64,7 @@ namespace LocalInfoApp
                 select evnt).FirstOrDefault();
 
             if (event1 is null)
-                return null;
+                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.Empty);
 
             int homeIndex = event1.teams_normalized[0].is_home ? 0 : 1;
             int awayIndex = homeIndex is 0 ? 1 : 0;
@@ -68,23 +77,33 @@ namespace LocalInfoApp
             string status = event1.score.event_status_detail.ToUpper();
             DateTime date = event1.event_date;
 
-            return new DisplaySportsScores()
-            {
-                AwayTeam = awayTeamName,
-                AwayTeamScore = awayTeamScore,
-                HomeTeam = homeTeamName,
-                HomeTeamScore = homeTeamScore,
-                Status = status,
-                DateOfEvent = date
-            };
+            return new KeyValuePair<DisplaySportsScores, Result>(
+                new DisplaySportsScores()
+                {
+                    AwayTeam = awayTeamName,
+                    AwayTeamScore = awayTeamScore,
+                    HomeTeam = homeTeamName,
+                    HomeTeamScore = homeTeamScore,
+                    Status = status,
+                    DateOfEvent = date
+                }, 
+                Result.OK);
         }
 
-        public static string GetSportsNews()
+        public static KeyValuePair<string, Result> GetSportsNews()
         {
             if (Properties.Resources.EndpointSportsNewsURL is "")
-                return null;
+                return new KeyValuePair<string, Result>(null, Result.NoKey);
 
-            XDocument xdoc = XDocument.Load(Properties.Resources.EndpointSportsNewsURL);
+            XDocument xdoc;
+            try
+            {
+                xdoc = XDocument.Load(Properties.Resources.EndpointSportsNewsURL);
+            }
+            catch (Exception)
+            {
+                return new KeyValuePair<string, Result>(null, Result.Error);
+            }
 
             string sportsStory = (
                 from chn in xdoc.Descendants("channel")
@@ -93,14 +112,17 @@ namespace LocalInfoApp
                 where ct.Value is "Sports"
                 select itm.Element("title").Value).FirstOrDefault();
 
-            return sportsStory;
+            if (sportsStory is null)
+                return new KeyValuePair<string, Result>(null, Result.Empty);
+            else
+                return new KeyValuePair<string, Result>(sportsStory, Result.OK);
 
         }
 
-        public static DisplayWeather GetWeather()
+        public static KeyValuePair<DisplayWeather, Result> GetWeather()
         {
             if (Properties.Resources.OpenWeatherMapKey is "")
-                return null;
+                return new KeyValuePair<DisplayWeather, Result>(null, Result.NoKey);
 
             var client = new RestClient("http://api.openweathermap.org/data/2.5/weather");
             var request = new RestRequest(Method.GET);
@@ -110,7 +132,7 @@ namespace LocalInfoApp
             var response = client.Execute(request);
             var weather = JsonConvert.DeserializeObject<JsonWeather>(response.Content);
             if (weather is null || weather.name is null || weather.weather is null || weather.weather.Length is 0)
-                return null;
+                return new KeyValuePair<DisplayWeather, Result>(null, Result.Empty);
 
             string city = weather.name;
             string conditions = weather.weather[0].main;
@@ -127,19 +149,19 @@ namespace LocalInfoApp
                     default: break;
                 }
 
-            return new DisplayWeather()
-            {
-                City = city,
-                Conditions = conditions,
-                TempCelsius = tempCelsius,
-                TimeOfReading = DateTime.Now
-            };
+            return new KeyValuePair<DisplayWeather, Result>(new DisplayWeather()
+                {
+                    City = city,
+                    Conditions = conditions,
+                    TempCelsius = tempCelsius,
+                    TimeOfReading = DateTime.Now
+                }, Result.OK);
         }
 
-        public static DisplayStock GetStocks()
+        public static KeyValuePair<DisplayStock, Result> GetStocks()
         {
             if (Properties.Resources.RapidApiKey is "")
-                return null;
+                return new KeyValuePair<DisplayStock, Result>(null, Result.NoKey);
 
             /*
              * get all exchanges
@@ -155,8 +177,8 @@ namespace LocalInfoApp
 
             var response = client.Execute(request);
             var stockQuote = JsonConvert.DeserializeObject<JsonStockQuote>(response.Content);
-            if (stockQuote is null)
-                return null;
+            if (stockQuote is null || stockQuote.c is 0)
+                return new KeyValuePair<DisplayStock, Result>(null, Result.Empty);
 
             float close = stockQuote.c;
             float change = close - stockQuote.pc;
@@ -170,25 +192,33 @@ namespace LocalInfoApp
             if (changePercentage > 0.000 && changePercentage < 0.1000)
                 changePercentage += 0.01f;
 
-            return new DisplayStock()
-            {
-                Change = change,
-                ChangePercentage = changePercentage,
-                Close = close,
-                CompanyName = Properties.Resources.DisplayStockCompanyName,
-                CompanySymbol = Properties.Resources.DisplayStockCompanySymbol,
-                Currency = Properties.Resources.DisplayStockCurrency,
-                ExchangeSymbol = Properties.Resources.DisplayStockExchangeSymbol,
-                Gain = gain
-            };
+            return new KeyValuePair<DisplayStock, Result> (new DisplayStock()
+                {
+                    Change = change,
+                    ChangePercentage = changePercentage,
+                    Close = close,
+                    CompanyName = Properties.Resources.DisplayStockCompanyName,
+                    CompanySymbol = Properties.Resources.DisplayStockCompanySymbol,
+                    Currency = Properties.Resources.DisplayStockCurrency,
+                    ExchangeSymbol = Properties.Resources.DisplayStockExchangeSymbol,
+                    Gain = gain
+                }, Result.OK);
         }
 
-        public static string GetNews()
+        public static KeyValuePair<string, Result> GetNews()
         {
             if (Properties.Resources.EndpointNewsFeedURL is "")
-                return null;
+                return new KeyValuePair<string, Result>(null, Result.NoKey);
 
-            XDocument xdoc = XDocument.Load(Properties.Resources.EndpointNewsFeedURL);
+            XDocument xdoc;
+            try
+            {
+                xdoc = XDocument.Load(Properties.Resources.EndpointNewsFeedURL);
+            }
+            catch (Exception)
+            {
+                return new KeyValuePair<string, Result>(null, Result.Error);
+            }
 
             var newsStory = (
                 from chn in xdoc.Descendants("channel")
@@ -199,7 +229,10 @@ namespace LocalInfoApp
                     //Description = itm.Element("description").Value
                 }).FirstOrDefault();
 
-            return newsStory is null ? null : newsStory.Title;
+            if (newsStory is null)
+                return new KeyValuePair<string, Result>(null, Result.Empty);
+            else
+                return new KeyValuePair<string, Result>(newsStory.Title, Result.OK);
         }
     }
 }

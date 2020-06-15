@@ -4,6 +4,18 @@ namespace LocalInfoApp
 {
     public class DisplayStock
     {
+        private static DisplayStock _sampleStock = new DisplayStock
+        {
+            Change = 0.45f,
+            ChangePercentage = 2.21f,
+            Close = 20.35f,
+            CompanyName = "Company Inc.",
+            CompanySymbol = "CMP",
+            Currency = "USD",
+            ExchangeSymbol = "ABC",
+            Gain = true
+        };
+
         public string CompanyName { get; set; }
 
         public string ExchangeSymbol { get; set; }
@@ -20,19 +32,9 @@ namespace LocalInfoApp
 
         public bool Gain { get; set; }
 
-        public static DisplayStock CreateSampleData()
+        public static DisplayStock GetSampleData()
         {
-            return new DisplayStock
-            {
-                Change = 0.45f,
-                ChangePercentage = 2.21f,
-                Close = 20.35f,
-                CompanyName = "Company Inc.",
-                CompanySymbol = "CMP",
-                Currency = "USD",
-                ExchangeSymbol = "ABC",
-                Gain = true
-            };
+            return _sampleStock;
         }
     }
 }

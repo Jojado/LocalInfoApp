@@ -156,6 +156,12 @@
   <data name="EndpointNewsFeedURL" xml:space="preserve">
     <value />
   </data>
+  <data name="EndpointResultEmpty" xml:space="preserve">
+    <value>No data found</value>
+  </data>
+  <data name="EndpointResultError" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
   <data name="EndpointSportsNewsURL" xml:space="preserve">
     <value />
   </data>

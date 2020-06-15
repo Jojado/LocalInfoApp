@@ -178,6 +178,24 @@ namespace LocalInfoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No data found.
+        /// </summary>
+        internal static string EndpointResultEmpty {
+            get {
+                return ResourceManager.GetString("EndpointResultEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred.
+        /// </summary>
+        internal static string EndpointResultError {
+            get {
+                return ResourceManager.GetString("EndpointResultError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         internal static string EndpointSportsNewsURL {

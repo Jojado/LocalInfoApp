@@ -1,13 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Globalization;
 using Xamarin.Forms;
-
-using Newtonsoft.Json;
-using RestSharp;
-using System.Xml.Linq;
-using LocalInfoApp.Properties;
 
 namespace LocalInfoApp
 {
@@ -20,25 +13,99 @@ namespace LocalInfoApp
         {
             InitializeComponent();
 
-            DisplayWeather weather = EndpointManager.GetWeather() ?? DisplayWeather.CreateSampleData();
+            SetWeather();
+            SetSportsScores();
+            SetSportsNews();
+            SetLocalNews();
+            SetStocks();
+        }
+
+        private void SetWeather()
+        {
+            var kvp = EndpointManager.GetWeather();
+            var weather = kvp.Key;
+            var result = kvp.Value;
+
+            switch (result)
+            {
+                case EndpointManager.Result.NoKey: weather = DisplayWeather.GetSampleData(); break;
+                case EndpointManager.Result.Empty: MainWeatherConditions.Text = Properties.Resources.EndpointResultEmpty; return;
+                default: break;
+            }
+
             MainWeatherTemp.Text = string.Format(Properties.Resources.DisplayFormatTemp, weather.TempCelsius);
             MainWeatherConditions.Text = weather.Conditions;
             MainWeatherTime.Text = weather.TimeOfReading.ToString(Properties.Resources.DisplayFormatWeatherDateAndTime);
             MainWeatherCity.Text = weather.City;
+        }
 
-            DisplaySportsScores scores = EndpointManager.GetSportsScores() ?? DisplaySportsScores.CreateSampleData();
+        private void SetSportsScores()
+        {
+            var kvp = EndpointManager.GetSportsScores();
+            var scores = kvp.Key;
+            var result = kvp.Value;
+
+            switch (result)
+            {
+                case EndpointManager.Result.NoKey: scores = DisplaySportsScores.GetSampleData(); break;
+                case EndpointManager.Result.Empty: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultEmpty; return;
+                case EndpointManager.Result.Error: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultError; return;
+                default: break;
+            }
+
             DateTime date = scores.DateOfEvent;
             MainSportsScoresTeams.Text = string.Format(Properties.Resources.DisplayFormatSportsTeams.Replace("\\n", "\n"), scores.AwayTeam, scores.HomeTeam);
             MainSportsScoresValues.Text = string.Format(Properties.Resources.DisplayFormatSportsScoreValues.Replace("\\n", "\n"), scores.AwayTeamScore, scores.HomeTeamScore);
             MainSportsScoresDateAndStatus.Text = string.Format(Properties.Resources.DisplayFormatSportsStatusAndDate.Replace("\\n", "\n"), scores.Status, date, ToOrdinal(date.Day));
+        }
 
-            string sportsNews = EndpointManager.GetSportsNews() ?? Properties.Resources.DisplaySampleSportsNews;
+        private void SetSportsNews()
+        {
+            var kvp = EndpointManager.GetSportsNews();
+            var sportsNews = kvp.Key;
+            var result = kvp.Value;
+
+            switch (result)
+            {
+                case EndpointManager.Result.NoKey: sportsNews = Properties.Resources.DisplaySampleSportsNews; break;
+                case EndpointManager.Result.Empty: sportsNews = Properties.Resources.EndpointResultEmpty; break;
+                case EndpointManager.Result.Error: sportsNews = Properties.Resources.EndpointResultError; break;
+                default: break;
+            }
+
             MainSportsNews.Text = sportsNews;
+        }
 
-            string news = EndpointManager.GetNews() ?? Properties.Resources.DisplaySampleLocalNews;
+        private void SetLocalNews()
+        {
+            var kvp = EndpointManager.GetNews();
+            var news = kvp.Key;
+            var result = kvp.Value;
+
+            switch (result)
+            {
+                case EndpointManager.Result.NoKey: news = Properties.Resources.DisplaySampleLocalNews; break;
+                case EndpointManager.Result.Empty: news = Properties.Resources.EndpointResultEmpty; break;
+                case EndpointManager.Result.Error: news = Properties.Resources.EndpointResultError; break;
+                default: break;
+            }
+
             MainNewsHeadline.Text = news;
+        }
 
-            DisplayStock stock = EndpointManager.GetStocks() ?? DisplayStock.CreateSampleData();
+        private void SetStocks()
+        {
+            var kvp = EndpointManager.GetStocks();
+            var stock = kvp.Key;
+            var result = kvp.Value;
+
+            switch (result)
+            {
+                case EndpointManager.Result.NoKey: stock = DisplayStock.GetSampleData(); break;
+                case EndpointManager.Result.Empty: MainStocks.Text = Properties.Resources.EndpointResultEmpty; return;
+                default: break;
+            }
+
             MainStocks.Text =
                 string.Format(Properties.Resources.DisplayFormatStocks.Replace("\\n", "\n"),
                               stock.CompanyName,
