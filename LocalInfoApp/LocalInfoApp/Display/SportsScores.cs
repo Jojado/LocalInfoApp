@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace LocalInfoApp
+namespace LocalInfoApp.Display
 {
-    public class DisplaySportsScores
+    public class SportsScores
     {
-        private static DisplaySportsScores _sampleSports = new DisplaySportsScores
+        private static SportsScores _sampleSports = new SportsScores
         {
             AwayTeam = "Away Team",
             AwayTeamScore = 0,
@@ -26,7 +26,7 @@ namespace LocalInfoApp
 
         public string Status { get; set; }
 
-        public static DisplaySportsScores GetSampleData()
+        public static SportsScores GetSampleData()
         {
             return _sampleSports;
         }

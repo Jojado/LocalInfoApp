@@ -1,10 +1,10 @@
 ﻿
 
-namespace LocalInfoApp
+namespace LocalInfoApp.Display
 {
-    public class DisplayStock
+    public class Stock
     {
-        private static DisplayStock _sampleStock = new DisplayStock
+        private static Stock _sampleStock = new Stock
         {
             Change = 0.45f,
             ChangePercentage = 2.21f,
@@ -32,7 +32,7 @@ namespace LocalInfoApp
 
         public bool Gain { get; set; }
 
-        public static DisplayStock GetSampleData()
+        public static Stock GetSampleData()
         {
             return _sampleStock;
         }

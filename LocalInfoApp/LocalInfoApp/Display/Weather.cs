@@ -1,11 +1,11 @@
 ﻿using System;
 using LocalInfoApp.Properties;
 
-namespace LocalInfoApp
+namespace LocalInfoApp.Display
 {
-    public class DisplayWeather
+    public class Weather
     {
-        private static DisplayWeather _sampleData = new DisplayWeather()
+        private static Weather _sampleData = new Weather()
         {
             City = "City Name",
             Conditions = "Conditions",
@@ -21,7 +21,7 @@ namespace LocalInfoApp
 
         public string City { get; set; }
 
-        public static DisplayWeather GetSampleData()
+        public static Weather GetSampleData()
         {
             return _sampleData;
         }

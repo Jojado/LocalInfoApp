@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace LocalInfoApp
+namespace LocalInfoApp.Json
 {
 
-    public class JsonNews
+    public class News
     {
         public Response response { get; set; }
     }

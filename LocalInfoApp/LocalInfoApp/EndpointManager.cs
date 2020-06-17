@@ -19,10 +19,10 @@ namespace LocalInfoApp
             NoKey
         }
 
-        public static KeyValuePair<DisplaySportsScores, Result> GetSportsScores()
+        public static KeyValuePair<Display.SportsScores, Result> GetSportsScores()
         {
             if (Properties.Resources.RapidApiKey is "")
-                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.NoKey);
+                return new KeyValuePair<Display.SportsScores, Result>(null, Result.NoKey);
 
             const string API_DATE_FORMAT = "yyyy-MM-dd";
             int parsed_team_id;
@@ -39,7 +39,7 @@ namespace LocalInfoApp
             }
             catch (Exception)
             {
-                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.Error);
+                return new KeyValuePair<Display.SportsScores, Result>(null, Result.Error);
             }
 
             string clientURL =
@@ -53,18 +53,18 @@ namespace LocalInfoApp
             request.AddHeader("x-rapidapi-key", Properties.Resources.RapidApiKey);
 
             var response = client.Execute(request);
-            var sportsEvents = JsonConvert.DeserializeObject<JsonSportsEvents>(response.Content);
+            var sportsEvents = JsonConvert.DeserializeObject<Json.SportsEvents>(response.Content);
             if (sportsEvents is null || sportsEvents.events is null)
-                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.Empty);
+                return new KeyValuePair<Display.SportsScores, Result>(null, Result.Empty);
 
-            Event event1 = (
+            Json.Event event1 = (
                 from evnt in sportsEvents.events
                 from tm in evnt.teams
                 where tm.team_id == parsed_team_id
                 select evnt).FirstOrDefault();
 
             if (event1 is null)
-                return new KeyValuePair<DisplaySportsScores, Result>(null, Result.Empty);
+                return new KeyValuePair<Display.SportsScores, Result>(null, Result.Empty);
 
             int homeIndex = event1.teams_normalized[0].is_home ? 0 : 1;
             int awayIndex = homeIndex is 0 ? 1 : 0;
@@ -77,8 +77,8 @@ namespace LocalInfoApp
             string status = event1.score.event_status_detail.ToUpper();
             DateTime date = event1.event_date;
 
-            return new KeyValuePair<DisplaySportsScores, Result>(
-                new DisplaySportsScores()
+            return new KeyValuePair<Display.SportsScores, Result>(
+                new Display.SportsScores()
                 {
                     AwayTeam = awayTeamName,
                     AwayTeamScore = awayTeamScore,
@@ -119,10 +119,10 @@ namespace LocalInfoApp
 
         }
 
-        public static KeyValuePair<DisplayWeather, Result> GetWeather()
+        public static KeyValuePair<Display.Weather, Result> GetWeather()
         {
             if (Properties.Resources.OpenWeatherMapKey is "")
-                return new KeyValuePair<DisplayWeather, Result>(null, Result.NoKey);
+                return new KeyValuePair<Display.Weather, Result>(null, Result.NoKey);
 
             var client = new RestClient("http://api.openweathermap.org/data/2.5/weather");
             var request = new RestRequest(Method.GET);
@@ -130,9 +130,9 @@ namespace LocalInfoApp
             request.AddParameter("appid", Properties.Resources.OpenWeatherMapKey);
 
             var response = client.Execute(request);
-            var weather = JsonConvert.DeserializeObject<JsonWeather>(response.Content);
+            var weather = JsonConvert.DeserializeObject<Json.Weather1>(response.Content);
             if (weather is null || weather.name is null || weather.weather is null || weather.weather.Length is 0)
-                return new KeyValuePair<DisplayWeather, Result>(null, Result.Empty);
+                return new KeyValuePair<Display.Weather, Result>(null, Result.Empty);
 
             string city = weather.name;
             string conditions = weather.weather[0].main;
@@ -149,7 +149,7 @@ namespace LocalInfoApp
                     default: break;
                 }
 
-            return new KeyValuePair<DisplayWeather, Result>(new DisplayWeather()
+            return new KeyValuePair<Display.Weather, Result>(new Display.Weather()
                 {
                     City = city,
                     Conditions = conditions,
@@ -158,10 +158,10 @@ namespace LocalInfoApp
                 }, Result.OK);
         }
 
-        public static KeyValuePair<DisplayStock, Result> GetStocks()
+        public static KeyValuePair<Display.Stock, Result> GetStocks()
         {
             if (Properties.Resources.RapidApiKey is "")
-                return new KeyValuePair<DisplayStock, Result>(null, Result.NoKey);
+                return new KeyValuePair<Display.Stock, Result>(null, Result.NoKey);
 
             /*
              * get all exchanges
@@ -176,9 +176,9 @@ namespace LocalInfoApp
             request.AddHeader("x-rapidapi-key", Properties.Resources.RapidApiKey);
 
             var response = client.Execute(request);
-            var stockQuote = JsonConvert.DeserializeObject<JsonStockQuote>(response.Content);
+            var stockQuote = JsonConvert.DeserializeObject<Json.StockQuote>(response.Content);
             if (stockQuote is null || stockQuote.c is 0)
-                return new KeyValuePair<DisplayStock, Result>(null, Result.Empty);
+                return new KeyValuePair<Display.Stock, Result>(null, Result.Empty);
 
             float close = stockQuote.c;
             float change = close - stockQuote.pc;
@@ -192,7 +192,7 @@ namespace LocalInfoApp
             if (changePercentage > 0.000 && changePercentage < 0.1000)
                 changePercentage += 0.01f;
 
-            return new KeyValuePair<DisplayStock, Result> (new DisplayStock()
+            return new KeyValuePair<Display.Stock, Result> (new Display.Stock()
                 {
                     Change = change,
                     ChangePercentage = changePercentage,

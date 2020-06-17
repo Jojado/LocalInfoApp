@@ -28,7 +28,7 @@ namespace LocalInfoApp
 
             switch (result)
             {
-                case EndpointManager.Result.NoKey: weather = DisplayWeather.GetSampleData(); break;
+                case EndpointManager.Result.NoKey: weather = Display.Weather.GetSampleData(); break;
                 case EndpointManager.Result.Empty: MainWeatherConditions.Text = Properties.Resources.EndpointResultEmpty; return;
                 default: break;
             }
@@ -47,7 +47,7 @@ namespace LocalInfoApp
 
             switch (result)
             {
-                case EndpointManager.Result.NoKey: scores = DisplaySportsScores.GetSampleData(); break;
+                case EndpointManager.Result.NoKey: scores = Display.SportsScores.GetSampleData(); break;
                 case EndpointManager.Result.Empty: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultEmpty; return;
                 case EndpointManager.Result.Error: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultError; return;
                 default: break;
@@ -101,7 +101,7 @@ namespace LocalInfoApp
 
             switch (result)
             {
-                case EndpointManager.Result.NoKey: stock = DisplayStock.GetSampleData(); break;
+                case EndpointManager.Result.NoKey: stock = Display.Stock.GetSampleData(); break;
                 case EndpointManager.Result.Empty: MainStocks.Text = Properties.Resources.EndpointResultEmpty; return;
                 default: break;
             }
