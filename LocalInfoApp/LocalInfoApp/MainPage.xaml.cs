@@ -22,14 +22,12 @@ namespace LocalInfoApp
 
         private void SetWeather()
         {
-            var kvp = EndpointManager.GetWeather();
-            var weather = kvp.Key;
-            var result = kvp.Value;
+            var weather = EndpointManager.GetWeather();
 
-            switch (result)
+            switch (weather.State)
             {
-                case EndpointManager.Result.NoKey: weather = Display.Weather.GetSampleData(); break;
-                case EndpointManager.Result.Empty: MainWeatherConditions.Text = Properties.Resources.EndpointResultEmpty; return;
+                case Display.DisplayState.NoKey: weather = Display.Weather.GetSampleData(); break;
+                case Display.DisplayState.Empty: MainWeatherConditions.Text = Properties.Resources.EndpointResultEmpty; return;
                 default: break;
             }
 
@@ -64,15 +62,13 @@ namespace LocalInfoApp
 
         private void SetSportsScores()
         {
-            var kvp = EndpointManager.GetSportsScores();
-            var scores = kvp.Key;
-            var result = kvp.Value;
+            var scores = EndpointManager.GetSportsScores();
 
-            switch (result)
+            switch (scores.State)
             {
-                case EndpointManager.Result.NoKey: scores = Display.SportsScores.GetSampleData(); break;
-                case EndpointManager.Result.Empty: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultEmpty; return;
-                case EndpointManager.Result.Error: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultError; return;
+                case Display.DisplayState.NoKey: scores = Display.SportsScores.GetSampleData(); break;
+                case Display.DisplayState.Empty: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultEmpty; return;
+                case Display.DisplayState.Error: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultError; return;
                 default: break;
             }
 
@@ -84,48 +80,42 @@ namespace LocalInfoApp
 
         private void SetSportsNews()
         {
-            var kvp = EndpointManager.GetSportsNews();
-            var sportsNews = kvp.Key;
-            var result = kvp.Value;
+            var sportsNews = EndpointManager.GetSportsNews();
 
-            switch (result)
+            switch (sportsNews.State)
             {
-                case EndpointManager.Result.NoKey: sportsNews = Properties.Resources.DisplaySampleSportsNews; break;
-                case EndpointManager.Result.Empty: sportsNews = Properties.Resources.EndpointResultEmpty; break;
-                case EndpointManager.Result.Error: sportsNews = Properties.Resources.EndpointResultError; break;
+                case Display.DisplayState.NoKey: sportsNews = Display.SportsNews.GetSampleData(); break;
+                case Display.DisplayState.Empty: MainSportsNews.Text = Properties.Resources.EndpointResultEmpty; return;
+                case Display.DisplayState.Error: MainSportsNews.Text = Properties.Resources.EndpointResultError; return;
                 default: break;
             }
 
-            MainSportsNews.Text = sportsNews;
+            MainSportsNews.Text = sportsNews.SportsNewsText;
         }
 
         private void SetLocalNews()
         {
-            var kvp = EndpointManager.GetNews();
-            var news = kvp.Key;
-            var result = kvp.Value;
+            var news = EndpointManager.GetNews();
 
-            switch (result)
+            switch (news.State)
             {
-                case EndpointManager.Result.NoKey: news = Properties.Resources.DisplaySampleLocalNews; break;
-                case EndpointManager.Result.Empty: news = Properties.Resources.EndpointResultEmpty; break;
-                case EndpointManager.Result.Error: news = Properties.Resources.EndpointResultError; break;
+                case Display.DisplayState.NoKey: news = Display.News.GetSampleData(); break;
+                case Display.DisplayState.Empty: MainNewsHeadline.Text = Properties.Resources.EndpointResultEmpty; return;
+                case Display.DisplayState.Error: MainNewsHeadline.Text = Properties.Resources.EndpointResultError; return;
                 default: break;
             }
 
-            MainNewsHeadline.Text = news;
+            MainNewsHeadline.Text = news.NewsText;
         }
 
         private void SetStocks()
         {
-            var kvp = EndpointManager.GetStocks();
-            var stock = kvp.Key;
-            var result = kvp.Value;
+            var stock = EndpointManager.GetStocks();
 
-            switch (result)
+            switch (stock.State)
             {
-                case EndpointManager.Result.NoKey: stock = Display.Stock.GetSampleData(); break;
-                case EndpointManager.Result.Empty: MainStocks.Text = Properties.Resources.EndpointResultEmpty; return;
+                case Display.DisplayState.NoKey: stock = Display.Stock.GetSampleData(); break;
+                case Display.DisplayState.Empty: MainStocks.Text = Properties.Resources.EndpointResultEmpty; return;
                 default: break;
             }
 

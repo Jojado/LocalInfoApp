@@ -124,24 +124,6 @@ namespace LocalInfoApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Here is the local news.
-        /// </summary>
-        internal static string DisplaySampleLocalNews {
-            get {
-                return ResourceManager.GetString("DisplaySampleLocalNews", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Here is the sports news.
-        /// </summary>
-        internal static string DisplaySampleSportsNews {
-            get {
-                return ResourceManager.GetString("DisplaySampleSportsNews", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Suncor Energy Inc..
         /// </summary>
         internal static string DisplayStockCompanyName {

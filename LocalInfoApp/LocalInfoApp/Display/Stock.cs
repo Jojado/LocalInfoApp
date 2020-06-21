@@ -13,7 +13,8 @@ namespace LocalInfoApp.Display
             CompanySymbol = "CMP",
             Currency = "USD",
             ExchangeSymbol = "ABC",
-            Gain = true
+            Gain = true,
+            State = DisplayState.NoKey
         };
 
         public string CompanyName { get; set; }
@@ -31,6 +32,8 @@ namespace LocalInfoApp.Display
         public float ChangePercentage { get; set; }
 
         public bool Gain { get; set; }
+
+        public DisplayState State { get; set; }
 
         public static Stock GetSampleData()
         {

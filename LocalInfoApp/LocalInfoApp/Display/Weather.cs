@@ -13,7 +13,8 @@ namespace LocalInfoApp.Display
             TimeOfReading = new DateTime(2001, 1, 1),
             HasWindData = true,
             WindDirection1 = WindDirection.North,
-            WindSpeedKPH = 0
+            WindSpeedKPH = 0,
+            State = DisplayState.NoKey
         };
 
         public enum WindDirection { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
@@ -31,6 +32,8 @@ namespace LocalInfoApp.Display
         public int WindSpeedKPH { get; set; }
 
         public WindDirection WindDirection1 { get; set; }
+
+        public DisplayState State { get; set; }
 
         public static Weather GetSampleData()
         {

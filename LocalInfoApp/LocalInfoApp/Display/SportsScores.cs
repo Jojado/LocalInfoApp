@@ -11,7 +11,8 @@ namespace LocalInfoApp.Display
             DateOfEvent = new DateTime(2001, 1, 1),
             HomeTeam = "Home Team",
             HomeTeamScore = 0,
-            Status = "FINAL"
+            Status = "FINAL",
+            State = DisplayState.NoKey
         };
 
         public DateTime DateOfEvent { get; set; }
@@ -25,6 +26,8 @@ namespace LocalInfoApp.Display
         public int HomeTeamScore { get; set; }
 
         public string Status { get; set; }
+
+        public DisplayState State { get; set; }
 
         public static SportsScores GetSampleData()
         {

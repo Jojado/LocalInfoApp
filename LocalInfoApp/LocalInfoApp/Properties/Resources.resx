@@ -138,12 +138,6 @@
   <data name="DisplayFormatWeatherWind" xml:space="preserve">
     <value>, Wind {0} {1} {2}</value>
   </data>
-  <data name="DisplaySampleLocalNews" xml:space="preserve">
-    <value>Here is the local news</value>
-  </data>
-  <data name="DisplaySampleSportsNews" xml:space="preserve">
-    <value>Here is the sports news</value>
-  </data>
   <data name="DisplayStockCompanyName" xml:space="preserve">
     <value>Suncor Energy Inc.</value>
   </data>
