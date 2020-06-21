@@ -135,6 +135,9 @@
   <data name="DisplayFormatWeatherDateAndTime" xml:space="preserve">
     <value>MM-dd h:mm tt</value>
   </data>
+  <data name="DisplayFormatWeatherWind" xml:space="preserve">
+    <value>, Wind {0} {1} {2}</value>
+  </data>
   <data name="DisplaySampleLocalNews" xml:space="preserve">
     <value>Here is the local news</value>
   </data>
@@ -152,6 +155,33 @@
   </data>
   <data name="DisplayStockExchangeSymbol" xml:space="preserve">
     <value>TSE</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionEast" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionNorth" xml:space="preserve">
+    <value>N</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionNorthEast" xml:space="preserve">
+    <value>NE</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionNorthWest" xml:space="preserve">
+    <value>NW</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionSouth" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionSouthEast" xml:space="preserve">
+    <value>SE</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionSouthWest" xml:space="preserve">
+    <value>SW</value>
+  </data>
+  <data name="DisplayWeatherWindDirectionWest" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="DisplayWeatherWindMeasurement" xml:space="preserve">
+    <value>km/h</value>
   </data>
   <data name="EndpointNewsFeedURL" xml:space="preserve">
     <value />

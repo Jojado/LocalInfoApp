@@ -115,6 +115,15 @@ namespace LocalInfoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , Wind {0} {1} {2}.
+        /// </summary>
+        internal static string DisplayFormatWeatherWind {
+            get {
+                return ResourceManager.GetString("DisplayFormatWeatherWind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here is the local news.
         /// </summary>
         internal static string DisplaySampleLocalNews {
@@ -165,6 +174,87 @@ namespace LocalInfoApp.Properties {
         internal static string DisplayStockExchangeSymbol {
             get {
                 return ResourceManager.GetString("DisplayStockExchangeSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionEast {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionEast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionNorth {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionNorth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NE.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionNorthEast {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionNorthEast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NW.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionNorthWest {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionNorthWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionSouth {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionSouth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SE.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionSouthEast {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionSouthEast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SW.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionSouthWest {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionSouthWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W.
+        /// </summary>
+        internal static string DisplayWeatherWindDirectionWest {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindDirectionWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to km/h.
+        /// </summary>
+        internal static string DisplayWeatherWindMeasurement {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindMeasurement", resourceCulture);
             }
         }
         

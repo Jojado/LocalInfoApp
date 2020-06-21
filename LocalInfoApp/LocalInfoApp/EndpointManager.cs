@@ -24,7 +24,7 @@ namespace LocalInfoApp
             if (Properties.Resources.RapidApiKey is "")
                 return new KeyValuePair<Display.SportsScores, Result>(null, Result.NoKey);
 
-            const string API_DATE_FORMAT = "yyyy-MM-dd";
+            const string API_DATE_FORMAT = "yyyy-MM-dd"; // web service format
             int parsed_team_id;
             DateTime api_date;
 
@@ -149,13 +149,56 @@ namespace LocalInfoApp
                     default: break;
                 }
 
-            return new KeyValuePair<Display.Weather, Result>(new Display.Weather()
-                {
-                    City = city,
-                    Conditions = conditions,
-                    TempCelsius = tempCelsius,
-                    TimeOfReading = DateTime.Now
-                }, Result.OK);
+            var weatherDisplay = new Display.Weather()
+            {
+                City = city,
+                Conditions = conditions,
+                TempCelsius = tempCelsius,
+                TimeOfReading = DateTime.Now
+            };
+
+            if (weather.wind != null)
+            {
+                // metres per second to kilometres per hour
+                int windSpeedKph = (int)Math.Round(weather.wind.speed * 3.6f, MidpointRounding.AwayFromZero);
+                int directionDegrees = weather.wind.deg;
+
+                weatherDisplay.HasWindData = true;
+                weatherDisplay.WindSpeedKPH = windSpeedKph;
+                weatherDisplay.WindDirection1 = GetWindDirection(directionDegrees);
+            }
+
+            return new KeyValuePair<Display.Weather, Result>(weatherDisplay, Result.OK);
+        }
+
+        // helper method to determine wind direction
+        private static Display.Weather.WindDirection GetWindDirection(int directionDegrees)
+        {
+            // eight directions separtated by 45 degrees each
+
+            if (directionDegrees >= 23 && directionDegrees < 68)
+                return Display.Weather.WindDirection.NorthEast;
+
+            else if (directionDegrees >= 68 && directionDegrees < 113)
+                return Display.Weather.WindDirection.East;
+
+            else if (directionDegrees >= 113 && directionDegrees < 158)
+                return Display.Weather.WindDirection.SouthEast;
+
+            else if (directionDegrees >= 158 && directionDegrees < 203)
+                return Display.Weather.WindDirection.South;
+
+            else if (directionDegrees >= 203 && directionDegrees < 248)
+                return Display.Weather.WindDirection.SouthWest;
+
+            else if (directionDegrees >= 248 && directionDegrees < 293)
+                return Display.Weather.WindDirection.West;
+
+            else if (directionDegrees >= 293 && directionDegrees < 338)
+                return Display.Weather.WindDirection.NorthWest;
+
+            else
+                return Display.Weather.WindDirection.North;
         }
 
         public static KeyValuePair<Display.Stock, Result> GetStocks()

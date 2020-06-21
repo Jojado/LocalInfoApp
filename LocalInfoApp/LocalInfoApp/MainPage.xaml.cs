@@ -35,6 +35,29 @@ namespace LocalInfoApp
 
             MainWeatherTemp.Text = string.Format(Properties.Resources.DisplayFormatTemp, weather.TempCelsius);
             MainWeatherConditions.Text = weather.Conditions;
+
+            if (weather.HasWindData)
+            {
+                string direction;
+                switch (weather.WindDirection1)
+                {
+                    case Display.Weather.WindDirection.NorthEast: direction = Properties.Resources.DisplayWeatherWindDirectionNorthEast; break;
+                    case Display.Weather.WindDirection.East:      direction = Properties.Resources.DisplayWeatherWindDirectionEast;      break;
+                    case Display.Weather.WindDirection.SouthEast: direction = Properties.Resources.DisplayWeatherWindDirectionSouthEast; break;
+                    case Display.Weather.WindDirection.South:     direction = Properties.Resources.DisplayWeatherWindDirectionSouth;     break;
+                    case Display.Weather.WindDirection.SouthWest: direction = Properties.Resources.DisplayWeatherWindDirectionSouthWest; break;
+                    case Display.Weather.WindDirection.West:      direction = Properties.Resources.DisplayWeatherWindDirectionWest;      break;
+                    case Display.Weather.WindDirection.NorthWest: direction = Properties.Resources.DisplayWeatherWindDirectionNorthWest; break;
+                    default: direction = Properties.Resources.DisplayWeatherWindDirectionNorth; break;
+                }
+
+                MainWeatherConditions.Text += 
+                    string.Format(Properties.Resources.DisplayFormatWeatherWind,
+                                  direction,
+                                  weather.WindSpeedKPH,
+                                  Properties.Resources.DisplayWeatherWindMeasurement);
+            }
+
             MainWeatherTime.Text = weather.TimeOfReading.ToString(Properties.Resources.DisplayFormatWeatherDateAndTime);
             MainWeatherCity.Text = weather.City;
         }
