@@ -17,7 +17,7 @@ namespace LocalInfoApp
             if (Properties.Resources.RapidApiKey is "")
                 return new SportsScores { State = DisplayState.NoKey };
 
-            const string API_DATE_FORMAT = "yyyy-MM-dd"; // web service format
+            const string API_DATE_FORMAT = "yyyy-MM-dd"; // Expected format for web service
             int parsed_team_id;
             DateTime api_date;
 
@@ -130,13 +130,13 @@ namespace LocalInfoApp
             int tempCelsius =
                 (int)Math.Round(weather.main.temp - 273.15f, MidpointRounding.AwayFromZero);
 
-            // hack for cold-weather conditions
+            // Hack for cold-weather conditions
             if (tempCelsius <= 0)
                 switch (conditions)
                 {
                     case "Rain": conditions = "Flurries"; break;
                     case "Mist": conditions = "Snow Grains"; break;
-                    case "Fog": conditions = "Light Freezing Drizzle"; break;
+                    case "Fog":  conditions = "Light Freezing Drizzle"; break;
                     default: break;
                 }
 
@@ -151,7 +151,7 @@ namespace LocalInfoApp
 
             if (weather.wind != null)
             {
-                // metres per second to kilometres per hour
+                // Convert metres per second to kilometres per hour
                 int windSpeedKph = (int)Math.Round(weather.wind.speed * 3.6f, MidpointRounding.AwayFromZero);
                 int directionDegrees = weather.wind.deg;
 
@@ -166,7 +166,12 @@ namespace LocalInfoApp
         // helper method to determine wind direction
         private static Display.Weather.WindDirection GetWindDirection(int directionDegrees)
         {
-            // eight directions separtated by 45 degrees each
+            // From the weather API: zero degrees is north, 180 degrees is south.
+            // With eight desired directions, 360 / 8 = 45 degree range per direction.
+            // Between 337.5 and 359 is north.
+            // Between zero and 22.5 is also north.
+            // Between 158.5 and 203.5 is south.
+            // Since degrees are supplied as integers, round up.
 
             if (directionDegrees >= 23 && directionDegrees < 68)
                 return Display.Weather.WindDirection.NorthEast;
@@ -199,9 +204,9 @@ namespace LocalInfoApp
                 return new Stock { State = DisplayState.NoKey };
 
             /*
-             * get all exchanges
+             * Get all exchanges
              * https://finnhub.io/api/v1/stock/exchange?token=
-             * get all symbols for Canada (TO) stocks
+             * Get all symbols for Canada (TO) stocks
              * https://finnhub.io/api/v1/stock/symbol?exchange=TO&token=
              */
             var client = new RestClient("https://finnhub-realtime-stock-price.p.rapidapi.com/quote");
@@ -222,8 +227,8 @@ namespace LocalInfoApp
             float changeAbsValue = Math.Abs(change);
             float changePercentage = changeAbsValue / close;
 
-            // any change in the closing price must be reflected as something
-            // other than zero
+            // Any change in the closing price must be reflected as something
+            // other than zero.
             if (changePercentage > 0.000 && changePercentage < 0.1000)
                 changePercentage += 0.01f;
 
