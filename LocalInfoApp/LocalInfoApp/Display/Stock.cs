@@ -14,7 +14,7 @@ namespace LocalInfoApp.Display
             Currency = "USD",
             ExchangeSymbol = "ABC",
             Gain = true,
-            State = DisplayState.NoKey
+            State = DisplayState.Offline
         };
 
         public string CompanyName { get; set; }

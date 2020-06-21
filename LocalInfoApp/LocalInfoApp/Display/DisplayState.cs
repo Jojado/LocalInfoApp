@@ -9,6 +9,6 @@ namespace LocalInfoApp.Display
         OK,
         Empty,
         Error,
-        NoKey
+        Offline
     }
 }

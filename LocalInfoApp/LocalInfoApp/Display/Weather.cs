@@ -14,7 +14,7 @@ namespace LocalInfoApp.Display
             HasWindData = true,
             WindDirection1 = WindDirection.North,
             WindSpeedKPH = 0,
-            State = DisplayState.NoKey
+            State = DisplayState.Offline
         };
 
         public enum WindDirection { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }

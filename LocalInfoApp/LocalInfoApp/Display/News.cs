@@ -9,7 +9,7 @@ namespace LocalInfoApp.Display
         private static News _sampleNews = new News
         {
             NewsText = "Here is the local news",
-            State = DisplayState.NoKey
+            State = DisplayState.Offline
         };
 
         public string NewsText { get; set; }

@@ -9,7 +9,7 @@ namespace LocalInfoApp.Display
         private static SportsNews _sampleSportsNews = new SportsNews
         {
             SportsNewsText = "Here is the sports news",
-            State = DisplayState.NoKey
+            State = DisplayState.Offline
         };
 
         public string SportsNewsText { get; set; }

@@ -15,7 +15,7 @@ namespace LocalInfoApp
         public static SportsScores GetSportsScores()
         {
             if (Properties.Resources.RapidApiKey is "")
-                return new SportsScores { State = DisplayState.NoKey };
+                return new SportsScores { State = DisplayState.Offline };
 
             const string API_DATE_FORMAT = "yyyy-MM-dd"; // Expected format for web service
             int parsed_team_id;
@@ -84,7 +84,7 @@ namespace LocalInfoApp
         public static SportsNews GetSportsNews()
         {
             if (Properties.Resources.EndpointSportsNewsURL is "")
-                return new SportsNews { State = DisplayState.NoKey };
+                return new SportsNews { State = DisplayState.Offline };
 
             XDocument xdoc;
             try
@@ -113,7 +113,7 @@ namespace LocalInfoApp
         public static Weather GetWeather()
         {
             if (Properties.Resources.OpenWeatherMapKey is "")
-                return new Weather { State = DisplayState.NoKey };
+                return new Weather { State = DisplayState.Offline };
 
             var client = new RestClient("http://api.openweathermap.org/data/2.5/weather");
             var request = new RestRequest(Method.GET);
@@ -201,7 +201,7 @@ namespace LocalInfoApp
         public static Stock GetStocks()
         {
             if (Properties.Resources.RapidApiKey is "")
-                return new Stock { State = DisplayState.NoKey };
+                return new Stock { State = DisplayState.Offline };
 
             /*
              * Get all exchanges
@@ -249,7 +249,7 @@ namespace LocalInfoApp
         public static News GetNews()
         {
             if (Properties.Resources.EndpointNewsFeedURL is "")
-                return new News { State = DisplayState.NoKey };
+                return new News { State = DisplayState.Offline };
 
             XDocument xdoc;
             try

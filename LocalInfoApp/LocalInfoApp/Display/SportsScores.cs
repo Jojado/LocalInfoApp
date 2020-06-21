@@ -12,7 +12,7 @@ namespace LocalInfoApp.Display
             HomeTeam = "Home Team",
             HomeTeamScore = 0,
             Status = "FINAL",
-            State = DisplayState.NoKey
+            State = DisplayState.Offline
         };
 
         public DateTime DateOfEvent { get; set; }
