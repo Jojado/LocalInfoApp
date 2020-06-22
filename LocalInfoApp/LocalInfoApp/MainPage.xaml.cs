@@ -26,7 +26,7 @@ namespace LocalInfoApp
 
             switch (weather.State)
             {
-                case Display.DisplayState.Offline: weather = Display.Weather.GetSampleData(); break;
+                case Display.DisplayState.Offline: weather = SampleDataRepository.GetSampleWeatherData(); break;
                 case Display.DisplayState.Empty: MainWeatherConditions.Text = Properties.Resources.EndpointResultEmpty; return;
                 default: break;
             }
@@ -66,7 +66,7 @@ namespace LocalInfoApp
 
             switch (scores.State)
             {
-                case Display.DisplayState.Offline: scores = Display.SportsScores.GetSampleData(); break;
+                case Display.DisplayState.Offline: scores = SampleDataRepository.GetSampleSportsScoreData(); break;
                 case Display.DisplayState.Empty: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultEmpty; return;
                 case Display.DisplayState.Error: MainSportsScoresTeams.Text = Properties.Resources.EndpointResultError; return;
                 default: break;
@@ -84,7 +84,7 @@ namespace LocalInfoApp
 
             switch (sportsNews.State)
             {
-                case Display.DisplayState.Offline: sportsNews = Display.SportsNews.GetSampleData(); break;
+                case Display.DisplayState.Offline: sportsNews = SampleDataRepository.GetSampleSportsNewsData(); break;
                 case Display.DisplayState.Empty: MainSportsNews.Text = Properties.Resources.EndpointResultEmpty; return;
                 case Display.DisplayState.Error: MainSportsNews.Text = Properties.Resources.EndpointResultError; return;
                 default: break;
@@ -99,7 +99,7 @@ namespace LocalInfoApp
 
             switch (news.State)
             {
-                case Display.DisplayState.Offline: news = Display.News.GetSampleData(); break;
+                case Display.DisplayState.Offline: news = SampleDataRepository.GetSampleNewsData(); break;
                 case Display.DisplayState.Empty: MainNewsHeadline.Text = Properties.Resources.EndpointResultEmpty; return;
                 case Display.DisplayState.Error: MainNewsHeadline.Text = Properties.Resources.EndpointResultError; return;
                 default: break;
@@ -114,7 +114,7 @@ namespace LocalInfoApp
 
             switch (stock.State)
             {
-                case Display.DisplayState.Offline: stock = Display.Stock.GetSampleData(); break;
+                case Display.DisplayState.Offline: stock = SampleDataRepository.GetSampleStockData(); break;
                 case Display.DisplayState.Empty: MainStocks.Text = Properties.Resources.EndpointResultEmpty; return;
                 default: break;
             }

@@ -2,21 +2,8 @@
 
 namespace LocalInfoApp.Display
 {
-    public class Stock
+    public class Stock : IDisplayState
     {
-        private static Stock _sampleStock = new Stock
-        {
-            Change = 0.45f,
-            ChangePercentage = 2.21f,
-            Close = 20.35f,
-            CompanyName = "Company Inc.",
-            CompanySymbol = "CMP",
-            Currency = "USD",
-            ExchangeSymbol = "ABC",
-            Gain = true,
-            State = DisplayState.Offline
-        };
-
         public string CompanyName { get; set; }
 
         public string ExchangeSymbol { get; set; }
@@ -34,10 +21,5 @@ namespace LocalInfoApp.Display
         public bool Gain { get; set; }
 
         public DisplayState State { get; set; }
-
-        public static Stock GetSampleData()
-        {
-            return _sampleStock;
-        }
     }
 }
