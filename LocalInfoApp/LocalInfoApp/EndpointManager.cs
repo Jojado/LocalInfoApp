@@ -127,11 +127,18 @@ namespace LocalInfoApp
 
             string city = weather.name;
             string conditions = weather.weather[0].main;
-            int tempCelsius =
-                (int)Math.Round(weather.main.temp - 273.15f, MidpointRounding.AwayFromZero);
+
+            var weatherDisplay = new Weather()
+            {
+                City = city,
+                TimeOfReading = DateTime.Now,
+                State = DisplayState.OK
+            };
+            weatherDisplay.SetTemp(weather.main.temp);
 
             // Hack for cold-weather conditions
-            if (tempCelsius <= 0)
+            if (weatherDisplay.GetTempCelsius() <= 0)
+            {
                 switch (conditions)
                 {
                     case "Rain": conditions = "Flurries"; break;
@@ -139,25 +146,14 @@ namespace LocalInfoApp
                     case "Fog":  conditions = "Light Freezing Drizzle"; break;
                     default: break;
                 }
-
-            var weatherDisplay = new Weather()
-            {
-                City = city,
-                Conditions = conditions,
-                TempCelsius = tempCelsius,
-                TimeOfReading = DateTime.Now,
-                State = DisplayState.OK
-            };
+            }
+            weatherDisplay.Conditions = conditions;
 
             if (weather.wind != null)
             {
-                // Convert metres per second to kilometres per hour
-                int windSpeedKph = (int)Math.Round(weather.wind.speed * 3.6f, MidpointRounding.AwayFromZero);
-                int directionDegrees = weather.wind.deg;
-
                 weatherDisplay.HasWindData = true;
-                weatherDisplay.WindSpeedKPH = windSpeedKph;
-                weatherDisplay.WindDirection1 = GetWindDirection(directionDegrees);
+                weatherDisplay.SetWindSpeed(weather.wind.speed);
+                weatherDisplay.WindDirection1 = GetWindDirection(weather.wind.deg);
             }
 
             return weatherDisplay;

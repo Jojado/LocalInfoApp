@@ -23,6 +23,7 @@ namespace LocalInfoApp
         private void SetWeather()
         {
             var weather = EndpointManager.GetWeather();
+            bool useMetric = Properties.Resources.UseMetric.Equals("true");
 
             switch (weather.State)
             {
@@ -31,7 +32,8 @@ namespace LocalInfoApp
                 default: break;
             }
 
-            MainWeatherTemp.Text = string.Format(Properties.Resources.DisplayFormatTemp, weather.TempCelsius);
+            int tempNumericValueToDisplay = useMetric ? weather.GetTempCelsius() : weather.GetTempFahrenheit();
+            MainWeatherTemp.Text = string.Format(Properties.Resources.DisplayFormatTemp, tempNumericValueToDisplay);
             MainWeatherConditions.Text = weather.Conditions;
 
             if (weather.HasWindData)
@@ -49,11 +51,16 @@ namespace LocalInfoApp
                     default: direction = Properties.Resources.DisplayWeatherWindDirectionNorth; break;
                 }
 
+                string windSpeedMeasurementToDisplay =
+                    useMetric ? Properties.Resources.DisplayWeatherWindMeasurementMetric : Properties.Resources.DisplayWeatherWindMeasurementImperial;
+                int windSpeedNumericValueToDisplay =
+                    useMetric ? weather.GetWindSpeedKPH() : weather.GetWindSpeedMPH();
+
                 MainWeatherConditions.Text += 
                     string.Format(Properties.Resources.DisplayFormatWeatherWind,
                                   direction,
-                                  weather.WindSpeedKPH,
-                                  Properties.Resources.DisplayWeatherWindMeasurement);
+                                  windSpeedNumericValueToDisplay,
+                                  windSpeedMeasurementToDisplay);
             }
 
             MainWeatherTime.Text = weather.TimeOfReading.ToString(Properties.Resources.DisplayFormatWeatherDateAndTime);

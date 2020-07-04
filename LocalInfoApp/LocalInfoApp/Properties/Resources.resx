@@ -174,7 +174,10 @@
   <data name="DisplayWeatherWindDirectionWest" xml:space="preserve">
     <value>W</value>
   </data>
-  <data name="DisplayWeatherWindMeasurement" xml:space="preserve">
+  <data name="DisplayWeatherWindMeasurementImperial" xml:space="preserve">
+    <value>mph</value>
+  </data>
+  <data name="DisplayWeatherWindMeasurementMetric" xml:space="preserve">
     <value>km/h</value>
   </data>
   <data name="EndpointNewsFeedURL" xml:space="preserve">
@@ -209,5 +212,8 @@
   </data>
   <data name="RapidApiStockQueryParam" xml:space="preserve">
     <value>SU.TO</value>
+  </data>
+  <data name="UseMetric" xml:space="preserve">
+    <value>true</value>
   </data>
 </root>

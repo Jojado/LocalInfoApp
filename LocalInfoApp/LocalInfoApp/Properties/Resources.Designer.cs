@@ -232,11 +232,20 @@ namespace LocalInfoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mph.
+        /// </summary>
+        internal static string DisplayWeatherWindMeasurementImperial {
+            get {
+                return ResourceManager.GetString("DisplayWeatherWindMeasurementImperial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to km/h.
         /// </summary>
-        internal static string DisplayWeatherWindMeasurement {
+        internal static string DisplayWeatherWindMeasurementMetric {
             get {
-                return ResourceManager.GetString("DisplayWeatherWindMeasurement", resourceCulture);
+                return ResourceManager.GetString("DisplayWeatherWindMeasurementMetric", resourceCulture);
             }
         }
         
@@ -336,6 +345,15 @@ namespace LocalInfoApp.Properties {
         internal static string RapidApiStockQueryParam {
             get {
                 return ResourceManager.GetString("RapidApiStockQueryParam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to true.
+        /// </summary>
+        internal static string UseMetric {
+            get {
+                return ResourceManager.GetString("UseMetric", resourceCulture);
             }
         }
     }

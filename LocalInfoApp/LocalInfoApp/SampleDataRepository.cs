@@ -10,12 +10,11 @@ namespace LocalInfoApp
         {
             City = "City Name",
             Conditions = "Conditions",
-            TempCelsius = 0,
             TimeOfReading = new DateTime(2001, 1, 1),
             HasWindData = true,
             WindDirection1 = Display.Weather.WindDirection.North,
-            WindSpeedKPH = 0,
-            State = Display.DisplayState.Offline
+            State = Display.DisplayState.Offline,
+            
         };
 
         private static Display.Stock _sampleStockData = new Display.Stock
@@ -56,6 +55,8 @@ namespace LocalInfoApp
 
         public static Display.Weather GetSampleWeatherData()
         {
+            _sampleWeatherData.SetTemp(273.15f); // degrees Kelvin
+            _sampleWeatherData.SetWindSpeed(0);
             return _sampleWeatherData;
         }
 
