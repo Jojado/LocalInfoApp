@@ -232,20 +232,20 @@ namespace LocalInfoApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to mph.
+        ///   Looks up a localized string similar to km/h.
         /// </summary>
-        internal static string DisplayWeatherWindMeasurementImperial {
+        internal static string DisplayWeatherWindMeasurementKPH {
             get {
-                return ResourceManager.GetString("DisplayWeatherWindMeasurementImperial", resourceCulture);
+                return ResourceManager.GetString("DisplayWeatherWindMeasurementKPH", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to km/h.
+        ///   Looks up a localized string similar to mph.
         /// </summary>
-        internal static string DisplayWeatherWindMeasurementMetric {
+        internal static string DisplayWeatherWindMeasurementMPH {
             get {
-                return ResourceManager.GetString("DisplayWeatherWindMeasurementMetric", resourceCulture);
+                return ResourceManager.GetString("DisplayWeatherWindMeasurementMPH", resourceCulture);
             }
         }
         

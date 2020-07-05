@@ -32,11 +32,11 @@ namespace LocalInfoApp
                 default: break;
             }
 
-            int tempNumericValueToDisplay = useMetric ? weather.GetTempCelsius() : weather.GetTempFahrenheit();
+            int tempNumericValueToDisplay = useMetric ? weather.TempCelsius : weather.TempFahrenheit;
             MainWeatherTemp.Text = string.Format(Properties.Resources.DisplayFormatTemp, tempNumericValueToDisplay);
             MainWeatherConditions.Text = weather.Conditions;
 
-            if (weather.HasWindData)
+            if (weather.HasCompleteWindData)
             {
                 string direction;
                 switch (weather.WindDirection1)
@@ -52,9 +52,9 @@ namespace LocalInfoApp
                 }
 
                 string windSpeedMeasurementToDisplay =
-                    useMetric ? Properties.Resources.DisplayWeatherWindMeasurementMetric : Properties.Resources.DisplayWeatherWindMeasurementImperial;
+                    useMetric ? Properties.Resources.DisplayWeatherWindMeasurementKPH : Properties.Resources.DisplayWeatherWindMeasurementMPH;
                 int windSpeedNumericValueToDisplay =
-                    useMetric ? weather.GetWindSpeedKPH() : weather.GetWindSpeedMPH();
+                    useMetric ? weather.WindSpeedKPH : weather.WindSpeedMPH;
 
                 MainWeatherConditions.Text += 
                     string.Format(Properties.Resources.DisplayFormatWeatherWind,

@@ -11,8 +11,9 @@ namespace LocalInfoApp
             City = "City Name",
             Conditions = "Conditions",
             TimeOfReading = new DateTime(2001, 1, 1),
-            HasWindData = true,
             WindDirection1 = Display.Weather.WindDirection.North,
+            TempKelvin = 273.15f,
+            WindSpeedMps = 0,
             State = Display.DisplayState.Offline,
             
         };
@@ -55,8 +56,6 @@ namespace LocalInfoApp
 
         public static Display.Weather GetSampleWeatherData()
         {
-            _sampleWeatherData.SetTemp(273.15f); // degrees Kelvin
-            _sampleWeatherData.SetWindSpeed(0);
             return _sampleWeatherData;
         }
 

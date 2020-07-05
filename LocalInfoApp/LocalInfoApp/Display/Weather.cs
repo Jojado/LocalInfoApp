@@ -5,24 +5,39 @@ namespace LocalInfoApp.Display
 {
     public class Weather
     {
-        private float _temperatureDegreesKelvin;
-        private float _windSpeedMetresPerSecond;
+        private int _windSpeedMPH;
+        private int _windSpeedKPH;
+        private bool _hasWindSpeed = false;
+        private WindDirection _windDirection;
+        private bool _hasWindDirection = false;
+        private int _tempCelsius;
+        private int _tempFahrenheit;
 
         public enum WindDirection { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
 
-        public void SetTemp(float degreesKelvin)
+        public float TempKelvin
         {
-            _temperatureDegreesKelvin = degreesKelvin;
+            set
+            {
+                _tempCelsius = (int)Math.Round(value - 273.15f, MidpointRounding.AwayFromZero);
+                _tempFahrenheit = (int)Math.Round((value * (9.00f / 5.00f)) - 459.67f, MidpointRounding.AwayFromZero);
+            }
         }
 
-        public int GetTempCelsius()
+        public int TempCelsius
         {
-            return (int) Math.Round(_temperatureDegreesKelvin - 273.15f, MidpointRounding.AwayFromZero);
+            get
+            {
+                return _tempCelsius;
+            }
         }
 
-        public int GetTempFahrenheit()
+        public int TempFahrenheit
         {
-            return (int) Math.Round((_temperatureDegreesKelvin * (9.00f / 5.00f)) - 459.67f, MidpointRounding.AwayFromZero);
+            get
+            {
+                return _tempFahrenheit;
+            }
         }
 
         public string Conditions { get; set; }
@@ -31,24 +46,52 @@ namespace LocalInfoApp.Display
 
         public string City { get; set; }
 
-        public bool HasWindData { get; set; }
-
-        public void SetWindSpeed(float metresPerSecond)
+        public bool HasCompleteWindData
         {
-            _windSpeedMetresPerSecond = metresPerSecond;
+            get
+            {
+                return _hasWindSpeed && _hasWindDirection;
+            }
         }
 
-        public int GetWindSpeedKPH()
+        public float WindSpeedMps // metres per second
         {
-            return (int) Math.Round(_windSpeedMetresPerSecond * 3.6f, MidpointRounding.AwayFromZero);
+            set
+            {
+                _windSpeedKPH = (int)Math.Round(value * 3.600f, MidpointRounding.AwayFromZero);
+                _windSpeedMPH = (int)Math.Round(value * 2.23694f, MidpointRounding.AwayFromZero);
+                _hasWindSpeed = true;
+            }
         }
 
-        public int GetWindSpeedMPH()
+        public int WindSpeedKPH
         {
-            return (int) Math.Round(_windSpeedMetresPerSecond * 2.23694f, MidpointRounding.AwayFromZero);
+            get
+            {
+                return _windSpeedKPH;
+            }
         }
 
-        public WindDirection WindDirection1 { get; set; }
+        public int WindSpeedMPH
+        {
+            get
+            {
+                return _windSpeedMPH;
+            }
+        }
+
+        public WindDirection WindDirection1
+        { 
+            get
+            {
+                return _windDirection;
+            }
+            set
+            {
+                _windDirection = value;
+                _hasWindDirection = true;
+            }
+        }
 
         public DisplayState State { get; set; }
     }

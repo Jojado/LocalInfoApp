@@ -132,12 +132,12 @@ namespace LocalInfoApp
             {
                 City = city,
                 TimeOfReading = DateTime.Now,
+                TempKelvin = weather.main.temp,
                 State = DisplayState.OK
             };
-            weatherDisplay.SetTemp(weather.main.temp);
 
             // Hack for cold-weather conditions
-            if (weatherDisplay.GetTempCelsius() <= 0)
+            if (weatherDisplay.TempCelsius <= 0)
             {
                 switch (conditions)
                 {
@@ -151,8 +151,7 @@ namespace LocalInfoApp
 
             if (weather.wind != null)
             {
-                weatherDisplay.HasWindData = true;
-                weatherDisplay.SetWindSpeed(weather.wind.speed);
+                weatherDisplay.WindSpeedMps = weather.wind.speed;
                 weatherDisplay.WindDirection1 = GetWindDirection(weather.wind.deg);
             }
 
