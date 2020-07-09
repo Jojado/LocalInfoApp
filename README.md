@@ -11,6 +11,8 @@ In the following file, read the keys below and update their values:
 
 LocalInfoApp/Properties/Resources.resx
 
+(NOTE: a future update will move these specific properties to an application configuration XML file)
+
 RapidApiKey - a private key must be obtained by registering at https://RapidApi.com and then subscribing to The Rundown API. Last I checked, there was a free and limited option but a credit card number must be provided and held on file.
 
 OpenWeatherMapKey -  a private key can be obtained for free from https://OpenWeatherMap.org
