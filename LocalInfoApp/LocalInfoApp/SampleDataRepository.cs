@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LocalInfoApp
 {
-    public class SampleDataRepository
+    public static class SampleDataRepository
     {
         private static Display.Weather _sampleWeatherData = new Display.Weather()
         {

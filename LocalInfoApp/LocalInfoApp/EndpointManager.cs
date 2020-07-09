@@ -10,7 +10,7 @@ using LocalInfoApp.Display;
 
 namespace LocalInfoApp
 {
-    public class EndpointManager
+    public static class EndpointManager
     {
         public static SportsScores GetSportsScores()
         {
