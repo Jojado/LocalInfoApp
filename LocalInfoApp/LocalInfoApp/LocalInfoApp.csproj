@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="App.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RestSharp" Version="106.10.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />

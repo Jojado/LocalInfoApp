@@ -23,7 +23,7 @@ namespace LocalInfoApp
         private void SetWeather()
         {
             var weather = EndpointManager.GetWeather();
-            bool useMetric = Properties.Resources.UseMetric.Equals("true");
+            bool useMetric = App.UseMetric.Equals("true");
 
             switch (weather.State)
             {

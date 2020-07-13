@@ -14,21 +14,23 @@ namespace LocalInfoApp
     {
         public static SportsScores GetSportsScores()
         {
-            if (Properties.Resources.RapidApiKey is "")
+            if (App.SportsScoresKey is "")
                 return new SportsScores { State = DisplayState.Offline };
 
             const string API_DATE_FORMAT = "yyyy-MM-dd"; // Expected format for web service
-            int parsed_team_id;
+            int team_id;
+            int league_id;
             DateTime api_date;
 
             try
             {
-                if (Properties.Resources.RapidApiSportsDate is "")
+                if (App.SportsScoresDate is "")
                     api_date = DateTime.Now;
                 else
-                    api_date = DateTime.ParseExact(Properties.Resources.RapidApiSportsDate, API_DATE_FORMAT, CultureInfo.InvariantCulture);
+                    api_date = DateTime.ParseExact(App.SportsScoresDate, API_DATE_FORMAT, CultureInfo.InvariantCulture);
 
-                parsed_team_id = int.Parse(Properties.Resources.RapidApiSportsTeamId);
+               team_id = int.Parse(App.SportsScoresTeamId);
+               league_id = int.Parse(App.SportsScoresLeagueId);
             }
             catch (Exception)
             {
@@ -36,14 +38,15 @@ namespace LocalInfoApp
             }
 
             string clientURL =
-                string.Format("https://therundown-therundown-v1.p.rapidapi.com/sports/{0}/events/{1}",
-                              Properties.Resources.RapidApiSportsLeagueId,
+                string.Format("{0}/sports/{1}/events/{2}",
+                              App.SportsScoresBaseEndpoint,
+                              league_id,
                               api_date.ToString(API_DATE_FORMAT));
             var client = new RestClient(clientURL);
             var request = new RestRequest(Method.GET);
             request.AddParameter("include", "scores");
             request.AddHeader("x-rapidapi-host", "therundown-therundown-v1.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", Properties.Resources.RapidApiKey);
+            request.AddHeader("x-rapidapi-key", App.SportsScoresKey);
 
             var response = client.Execute(request);
             var sportsEvents = JsonConvert.DeserializeObject<Json.SportsEvents>(response.Content);
@@ -53,7 +56,7 @@ namespace LocalInfoApp
             Json.Event event1 = (
                 from evnt in sportsEvents.events
                 from tm in evnt.teams
-                where tm.team_id == parsed_team_id
+                where tm.team_id == team_id
                 select evnt).FirstOrDefault();
 
             if (event1 is null)
@@ -83,13 +86,14 @@ namespace LocalInfoApp
 
         public static SportsNews GetSportsNews()
         {
-            if (Properties.Resources.EndpointSportsNewsURL is "")
+            if (App.SportsNewsBaseEndpoint is "")
                 return new SportsNews { State = DisplayState.Offline };
 
             XDocument xdoc;
             try
             {
-                xdoc = XDocument.Load(Properties.Resources.EndpointSportsNewsURL);
+                string url = string.Format("{0}{1}", App.SportsNewsBaseEndpoint, App.SportsNewsPath);
+                xdoc = XDocument.Load(url);
             }
             catch (Exception)
             {
@@ -112,13 +116,13 @@ namespace LocalInfoApp
 
         public static Weather GetWeather()
         {
-            if (Properties.Resources.OpenWeatherMapKey is "")
+            if (App.WeatherKey is "")
                 return new Weather { State = DisplayState.Offline };
 
-            var client = new RestClient("http://api.openweathermap.org/data/2.5/weather");
+            var client = new RestClient(string.Format("{0}{1}", App.WeatherBaseEndpoint, App.WeatherPath));
             var request = new RestRequest(Method.GET);
-            request.AddParameter("q", Properties.Resources.OpenWeatherMapQueryParam); // city or town
-            request.AddParameter("appid", Properties.Resources.OpenWeatherMapKey);
+            request.AddParameter("q", App.WeatherQueryParam); // city or town
+            request.AddParameter("appid", App.WeatherKey);
 
             var response = client.Execute(request);
             var weather = JsonConvert.DeserializeObject<Json.Weather1>(response.Content);
@@ -195,7 +199,7 @@ namespace LocalInfoApp
 
         public static Stock GetStocks()
         {
-            if (Properties.Resources.RapidApiKey is "")
+            if (App.StocksKey is "")
                 return new Stock { State = DisplayState.Offline };
 
             /*
@@ -204,11 +208,11 @@ namespace LocalInfoApp
              * Get all symbols for Canada (TO) stocks
              * https://finnhub.io/api/v1/stock/symbol?exchange=TO&token=
              */
-            var client = new RestClient("https://finnhub-realtime-stock-price.p.rapidapi.com/quote");
+            var client = new RestClient(string.Format("{0}/quote", App.StocksBaseEndpoint));
             var request = new RestRequest(Method.GET);
-            request.AddParameter("symbol", Properties.Resources.RapidApiStockQueryParam);
+            request.AddParameter("symbol", App.StocksQueryParam);
             request.AddHeader("x-rapidapi-host", "finnhub-realtime-stock-price.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", Properties.Resources.RapidApiKey);
+            request.AddHeader("x-rapidapi-key", App.StocksKey);
 
             var response = client.Execute(request);
             var stockQuote = JsonConvert.DeserializeObject<Json.StockQuote>(response.Content);
@@ -243,13 +247,14 @@ namespace LocalInfoApp
 
         public static News GetNews()
         {
-            if (Properties.Resources.EndpointNewsFeedURL is "")
+            if (App.NewsFeedBaseEndpoint is "")
                 return new News { State = DisplayState.Offline };
 
             XDocument xdoc;
             try
             {
-                xdoc = XDocument.Load(Properties.Resources.EndpointNewsFeedURL);
+                string url = string.Format("{0}{1}", App.NewsFeedBaseEndpoint, App.NewsFeedPath);
+                xdoc = XDocument.Load(url);
             }
             catch (Exception)
             {

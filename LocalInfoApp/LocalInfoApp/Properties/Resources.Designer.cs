@@ -250,15 +250,6 @@ namespace LocalInfoApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string EndpointNewsFeedURL {
-            get {
-                return ResourceManager.GetString("EndpointNewsFeedURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No data found.
         /// </summary>
         internal static string EndpointResultEmpty {
@@ -273,87 +264,6 @@ namespace LocalInfoApp.Properties {
         internal static string EndpointResultError {
             get {
                 return ResourceManager.GetString("EndpointResultError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string EndpointSportsNewsURL {
-            get {
-                return ResourceManager.GetString("EndpointSportsNewsURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string OpenWeatherMapKey {
-            get {
-                return ResourceManager.GetString("OpenWeatherMapKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to calgary,ab,ca.
-        /// </summary>
-        internal static string OpenWeatherMapQueryParam {
-            get {
-                return ResourceManager.GetString("OpenWeatherMapQueryParam", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string RapidApiKey {
-            get {
-                return ResourceManager.GetString("RapidApiKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2020-03-08.
-        /// </summary>
-        internal static string RapidApiSportsDate {
-            get {
-                return ResourceManager.GetString("RapidApiSportsDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 6.
-        /// </summary>
-        internal static string RapidApiSportsLeagueId {
-            get {
-                return ResourceManager.GetString("RapidApiSportsLeagueId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 39727.
-        /// </summary>
-        internal static string RapidApiSportsTeamId {
-            get {
-                return ResourceManager.GetString("RapidApiSportsTeamId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SU.TO.
-        /// </summary>
-        internal static string RapidApiStockQueryParam {
-            get {
-                return ResourceManager.GetString("RapidApiStockQueryParam", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to true.
-        /// </summary>
-        internal static string UseMetric {
-            get {
-                return ResourceManager.GetString("UseMetric", resourceCulture);
             }
         }
     }

@@ -180,40 +180,10 @@
   <data name="DisplayWeatherWindMeasurementMPH" xml:space="preserve">
     <value>mph</value>
   </data>
-  <data name="EndpointNewsFeedURL" xml:space="preserve">
-    <value />
-  </data>
   <data name="EndpointResultEmpty" xml:space="preserve">
     <value>No data found</value>
   </data>
   <data name="EndpointResultError" xml:space="preserve">
     <value>An error occurred</value>
-  </data>
-  <data name="EndpointSportsNewsURL" xml:space="preserve">
-    <value />
-  </data>
-  <data name="OpenWeatherMapKey" xml:space="preserve">
-    <value />
-  </data>
-  <data name="OpenWeatherMapQueryParam" xml:space="preserve">
-    <value>calgary,ab,ca</value>
-  </data>
-  <data name="RapidApiKey" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RapidApiSportsDate" xml:space="preserve">
-    <value>2020-03-08</value>
-  </data>
-  <data name="RapidApiSportsLeagueId" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="RapidApiSportsTeamId" xml:space="preserve">
-    <value>39727</value>
-  </data>
-  <data name="RapidApiStockQueryParam" xml:space="preserve">
-    <value>SU.TO</value>
-  </data>
-  <data name="UseMetric" xml:space="preserve">
-    <value>true</value>
   </data>
 </root>

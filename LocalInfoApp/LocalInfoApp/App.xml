@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AppConfig>
+	
+	<!-- Sports scores -->
+	<SportsScoresKey></SportsScoresKey>
+	<SportsScoresBaseEndpoint>https://therundown-therundown-v1.p.rapidapi.com</SportsScoresBaseEndpoint>
+	<SportsScoresDate>2020-03-08</SportsScoresDate> <!-- 2020-03-08 = March 8th 2020 -->
+	<SportsScoresLeagueId>6</SportsScoresLeagueId>  <!--          6 = National Hockey League -->
+	<SportsScoresTeamId>39727</SportsScoresTeamId>  <!--      39727 = Calgary Flames -->
+	
+	<!-- Stocks -->
+	<StocksKey></StocksKey>
+	<StocksBaseEndpoint>https://finnhub-realtime-stock-price.p.rapidapi.com</StocksBaseEndpoint>
+	<StocksQueryParam>SU.TO</StocksQueryParam> <!-- SU.TO = Suncor Energy -->
+	
+	<!-- Weather -->
+	<WeatherKey></WeatherKey>
+	<WeatherBaseEndpoint>http://api.openweathermap.org</WeatherBaseEndpoint>
+	<WeatherPath>/data/2.5/weather</WeatherPath>
+	<WeatherQueryParam>calgary,ab,ca</WeatherQueryParam> <!-- city,region,country -->
+	
+	<!-- Local news -->
+	<NewsFeedBaseEndpoint></NewsFeedBaseEndpoint>
+	<NewsFeedPath></NewsFeedPath>
+
+	<!-- Sports news -->
+	<SportsNewsBaseEndpoint></SportsNewsBaseEndpoint>
+	<SportsNewsPath></SportsNewsPath>
+	
+	<!-- Misc. config -->
+	<UseMetric>true</UseMetric>
+
+</AppConfig>
