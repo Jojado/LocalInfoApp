@@ -23,6 +23,6 @@ NewsFeedBaseEndpoint - the base endpoint of an RSS feed, e.g. https://calgary.ct
 
 NewsFeedPath - the path which completes the whole news feed URL, e.g. /rss/ctv-news-calgary-1.822341
 
-SportsNewsBaseEndpoint - the base endpoint of an RSS feed, e.g. https://calgarysun.com
+SportsNewsBaseEndpoint - the base endpoint of an RSS feed satisfying the following tree structure: channel->item->category=Sports, e.g. https://calgarysun.com
 
 SportsNewsPath - the path which completes the whole sports news feed URL, e.g. /feed/
