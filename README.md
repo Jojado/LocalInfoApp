@@ -3,7 +3,7 @@ Displays weather, news, stocks and sports information.
 
 THIS SOFTWARE IS PROVIDED AS IS WITH NO WARRANTY OF ANY KIND. USE AT YOUR OWN RISK.
 
-Coded using VS 2019 with Xamarin.Forms, RestSharp and Newtownsoft Json. Can be deployed to Android and iOS devices. Ran and tested using Android 8.1, API 27 emulator.
+Coded using Visual Studio 2019 with Xamarin.Forms, RestSharp and Newtownsoft Json. Can be deployed to Android and iOS devices. Ran and tested using Android 8.1, API 27 emulator.
 
 Out of the box, the app will run with sample data. A configuration file exists that - upon updating - would enable access to live data.
 
