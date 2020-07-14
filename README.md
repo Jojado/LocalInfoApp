@@ -15,7 +15,7 @@ LocalInfoApp/App.xml
 
 SportsScoresKey - a private key must be obtained by registering at https://RapidApi.com and then subscribing to The Rundown API. Last I checked, there was a free and limited option but a credit card number must be provided and held on file.
 
-StocksKey - for the current implementation based on RapidApi, it's the same key as above (SportsScoresKey)
+StocksKey - for the current implementation based on RapidApi, the inner value should be the same as above (SportsScoresKey)
 
 WeatherKey -  a private key can be obtained for free from https://OpenWeatherMap.org
 
