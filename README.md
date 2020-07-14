@@ -7,16 +7,20 @@ Coded using VS 2019 with Xamarin.Forms, RestSharp and Newtownsoft Json. Can be d
 
 Out of the box, the app will run with sample data. A configuration file exists that - upon updating - would enable access to live data.
 
-In the following file, read the keys below and update their values:
+(a future update will include more robust support for Dev/QA/Prod environments and may include a cleaner app configuration with user-based preferences)
 
-LocalInfoApp/Properties/Resources.resx
+In the following file, read the entitiy names below and update their inner values:
 
-(NOTE: a future update will move these specific properties to an application configuration XML file)
+LocalInfoApp/App.xml
 
-RapidApiKey - a private key must be obtained by registering at https://RapidApi.com and then subscribing to The Rundown API. Last I checked, there was a free and limited option but a credit card number must be provided and held on file.
+SportsScoresKey - a private key must be obtained by registering at https://RapidApi.com and then subscribing to The Rundown API. Last I checked, there was a free and limited option but a credit card number must be provided and held on file.
 
-OpenWeatherMapKey -  a private key can be obtained for free from https://OpenWeatherMap.org
+StocksKey - for the current implementation based on RapidApi, it's the same key as above (SportsScoresKey)
 
-EndpointNewsFeedURL - the URL of an RSS feed, e.g. https://calgary.ctvnews.ca/rss/ctv-news-calgary-1.822341
+WeatherKey -  a private key can be obtained for free from https://OpenWeatherMap.org
 
-EndpointSportsNewsURL - the URL of an RSS feed with sports news, specifically with this tree structure: channel>item>category=Sports , e.g. https://calgarysun.com/feed/
+NewsFeedBaseEndpoint - the base endpoint of an RSS feed, e.g. https://calgary.ctvnews.ca
+NewsFeedPath - the path which completes the news feed URL, e.g. /rss/ctv-news-calgary-1.822341
+
+SportsNewsBaseEndpoint - the base endpoint of an RSS feed, e.g. https://calgarysun.com
+SportsNewsPath - the path which completes the sports news feed URL, e.g. /feed/
