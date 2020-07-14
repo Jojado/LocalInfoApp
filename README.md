@@ -20,7 +20,9 @@ StocksKey - for the current implementation based on RapidApi, it's the same key 
 WeatherKey -  a private key can be obtained for free from https://OpenWeatherMap.org
 
 NewsFeedBaseEndpoint - the base endpoint of an RSS feed, e.g. https://calgary.ctvnews.ca
-NewsFeedPath - the path which completes the news feed URL, e.g. /rss/ctv-news-calgary-1.822341
+
+NewsFeedPath - the path which completes the whole news feed URL, e.g. /rss/ctv-news-calgary-1.822341
 
 SportsNewsBaseEndpoint - the base endpoint of an RSS feed, e.g. https://calgarysun.com
-SportsNewsPath - the path which completes the sports news feed URL, e.g. /feed/
+
+SportsNewsPath - the path which completes the whole sports news feed URL, e.g. /feed/
