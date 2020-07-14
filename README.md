@@ -9,7 +9,7 @@ Out of the box, the app will run with sample data. A configuration file exists t
 
 (a future update will include more robust support for Dev/QA/Prod environments and may include a cleaner app configuration with user-based preferences)
 
-In the following file, read the entitiy names below and update their inner values:
+In the following file, read the entity names below and update their inner values:
 
 LocalInfoApp/App.xml
 
