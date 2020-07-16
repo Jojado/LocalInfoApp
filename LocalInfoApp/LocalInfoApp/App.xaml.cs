@@ -30,16 +30,16 @@ namespace LocalInfoApp
             else
                 return;
 
-            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
-            var stream = assembly.GetManifestResourceStream("LocalInfoApp.App.xml");
-            var text = "";
             var doc = new XmlDocument();
-            using (var reader = new System.IO.StreamReader(stream))
-            {
-                text = reader.ReadToEnd();
-            }
-            doc.LoadXml(text);
+            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
 
+            using (var stream = assembly.GetManifestResourceStream("LocalInfoApp.App.xml"))
+            {
+                var reader = new System.IO.StreamReader(stream);
+                var text = reader.ReadToEnd();
+                doc.LoadXml(text);
+            };
+            
             SportsScoresKey          = doc.SelectSingleNode("AppConfig/SportsScoresKey").InnerText;
             SportsScoresBaseEndpoint = doc.SelectSingleNode("AppConfig/SportsScoresBaseEndpoint").InnerText;
             SportsScoresDate         = doc.SelectSingleNode("AppConfig/SportsScoresDate").InnerText;
