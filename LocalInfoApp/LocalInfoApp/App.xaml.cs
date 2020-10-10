@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Pipes;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Serialization;
 using Xamarin.Forms;
@@ -23,12 +24,13 @@ namespace LocalInfoApp
             MainPage = new MainPage();
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         private static void LoadAppConfig()
         {
-            if (!_appStarted)
-                _appStarted = true;
-            else
+            if (_appStarted)
                 return;
+            else
+                _appStarted = true;
 
             var doc = new XmlDocument();
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;

@@ -6,7 +6,7 @@ namespace LocalInfoApp
 {
     public static class SampleDataRepository
     {
-        private static Display.Weather _sampleWeatherData = new Display.Weather()
+        public static Display.Weather WeatherData { get; }  = new Display.Weather()
         {
             City = "City Name",
             Conditions = "Conditions",
@@ -15,10 +15,10 @@ namespace LocalInfoApp
             TempKelvin = 273.15f,
             WindSpeedMps = 0,
             State = Display.DisplayState.Offline,
-            
+
         };
 
-        private static Display.Stock _sampleStockData = new Display.Stock
+        public static Display.Stock StockData { get; } = new Display.Stock
         {
             Change = 0.45f,
             ChangePercentage = 2.21f,
@@ -31,7 +31,7 @@ namespace LocalInfoApp
             State = Display.DisplayState.Offline
         };
 
-        private static Display.SportsScores _sampleSportsData = new Display.SportsScores
+        public static Display.SportsScores SportsScoreData { get; } = new Display.SportsScores
         {
             AwayTeam = "Away Team",
             AwayTeamScore = 0,
@@ -42,41 +42,16 @@ namespace LocalInfoApp
             State = Display.DisplayState.Offline
         };
 
-        private static Display.News _sampleNewsData = new Display.News
+        public static Display.News NewsData { get; } = new Display.News
         {
             NewsText = "Here is the local news",
             State = Display.DisplayState.Offline
         };
 
-        private static Display.SportsNews _sampleSportsNews = new Display.SportsNews
+        public static Display.SportsNews SportsNewsData { get; } = new Display.SportsNews
         {
             SportsNewsText = "Here is the sports news",
             State = Display.DisplayState.Offline
         };
-
-        public static Display.Weather GetSampleWeatherData()
-        {
-            return _sampleWeatherData;
-        }
-
-        public static Display.Stock GetSampleStockData()
-        {
-            return _sampleStockData;
-        }
-
-        public static Display.SportsScores GetSampleSportsScoreData()
-        {
-            return _sampleSportsData;
-        }
-
-        public static Display.News GetSampleNewsData()
-        {
-            return _sampleNewsData;
-        }
-
-        public static Display.SportsNews GetSampleSportsNewsData()
-        {
-            return _sampleSportsNews;
-        }
     }
 }
